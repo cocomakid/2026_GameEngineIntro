@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,5 +60,22 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1);
             }*/
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Door1")
+            Destroy(collision.gameObject);
+
+        if (collision.name == "Death")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
+        else
+        {
+            SceneManager.LoadScene("PlayScene_" + collision.name);
+
+        }
     }
 }
